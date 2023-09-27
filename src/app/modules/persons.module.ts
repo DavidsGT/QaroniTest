@@ -6,6 +6,7 @@ import { AppMaterialModule } from '../app-material.module';
 import { PersonsComponent } from '../components/persons/persons.component';
 import { PersonDetailsComponent } from '../components/persons/person-details/person-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OnlyAlphabetDirective } from '../validations/alphabet-only.directive';
 
 const routes: Routes = [
   { path: '', component: PersonsComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     PersonsComponent,
-    PersonDetailsComponent
+    PersonDetailsComponent,
+    OnlyAlphabetDirective
   ],
   imports: [ReactiveFormsModule,
     CommonModule,

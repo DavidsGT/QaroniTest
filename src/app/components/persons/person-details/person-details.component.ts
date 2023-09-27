@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Person } from 'src/app/models/person.model';
 import { PersonService } from 'src/app/services/person.service';
 
@@ -13,7 +13,7 @@ export class PersonDetailsComponent {
   formPerson!: FormGroup;
   constructor(
     private activatedRoute: ActivatedRoute, private personService: PersonService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder, private router: Router
   ) {
     this.formPerson = this.formBuilder.group({
       id: [],
@@ -40,7 +40,8 @@ export class PersonDetailsComponent {
     );
   }
   save() {
-    console.log(this.formPerson.value)
+    this.personService.add(this.formPerson.value);
+    this.router.navigate(['../'],{ relativeTo: this.activatedRoute })
   }
   get hijos(): FormArray {
     return this.formPerson.get('hijos') as FormArray;
@@ -73,8 +74,14 @@ export class PersonDetailsComponent {
         nombre: ['', [Validators.required]],
         director: ['', [Validators.required]],
         anio: ['', [Validators.required]],
-        hasOscar: ['', [Validators.required]]
+        hasOscar: [false]
       })
     );
+  }
+  addClassValidator(inputForm:any){
+    return {
+      'is-valid': inputForm.valid && (inputForm.dirty || inputForm.touched),
+      'is-invalid': inputForm.invalid && (inputForm.dirty || inputForm.touched)
+    }
   }
 }

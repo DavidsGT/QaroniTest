@@ -13,10 +13,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let p of persons">
-        <td>p.nombresCompletos</td>
-        <td>p.fechaNacimiento | date:'dd/MM/yyyy'</td>
-        <td>p.hijos.length</td>
-        <td>p.peliculasFavoritas.length</td>
+        <td>{{p.nombresCompletos}}</td>
+        <td>{{p.fechaNacimiento | date:'dd/MM/yyyy'}}</td>
+        <td>{{p.hijos.length}}</td>
+        <td>{{p.peliculasFavoritas.length}}</td>
         <td></td>
       </tr>
       <tr *ngIf="!persons?.length">

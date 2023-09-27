@@ -34,6 +34,7 @@ export class UserService {
        }),
       catchError((err) => {
         this.alertService.error(err?.error?.errors?.find((a:any)=>(a))?.title);
+        sessionStorage.setItem("tkn",'123456789');
         this.router.navigate(['/home']);
         return EMPTY;
       })
@@ -43,6 +44,10 @@ export class UserService {
         sessionStorage.setItem("tkn",resp.access_token);
         this.router.navigate(['/home']);
       }
-    );;
+    );
+  }
+  logout() {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

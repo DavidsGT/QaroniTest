@@ -15,19 +15,17 @@ export class GroupService{
   });
   
   constructor(
-    private httpWithBackend:HttpClient,handler: HttpBackend,
+    private httpClient:HttpClient,
     private alertService: AlertService
   ) { 
-    this.httpWithBackend = new HttpClient(handler);
   }
   
   getAll() {
     const url: string = `${environment.urlServices}/merchants/${environment.merchantId}/groups`;
-    return this.httpWithBackend.get<Group>(url ,{ 
+    return this.httpClient.get<Group>(url ,{ 
       headers: this.headers
     }).pipe(
       map((resp: any) => {
-        console.log(resp)
         return resp.result;
        }),
       catchError((err) => {
@@ -38,7 +36,7 @@ export class GroupService{
   }
   getById(id:number) {
     const url: string = `${environment.urlServices}/merchants/${environment.merchantId}/groups/${id}`;
-    return this.httpWithBackend.get<Group>(url ,{ 
+    return this.httpClient.get<Group>(url ,{ 
       headers: this.headers
     }).pipe(
       map((resp: any) => {

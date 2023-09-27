@@ -7,6 +7,7 @@ import { ShareModule } from './share.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent , children: [
+    { path: '', redirectTo: '/home/groups', pathMatch : 'full'},
       { path: 'groups', loadChildren: () => import('../modules/groups.module').then(m => m.GroupsModule) },
       { path: 'persons', loadChildren: () => import('../modules/persons.module').then(m => m.PersonsModule) }
     ]

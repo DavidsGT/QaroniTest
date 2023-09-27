@@ -9,23 +9,17 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private router: Router) {
     }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+      console.log("auth 2")
             if (sessionStorage.getItem('tkn')) {
+              console.log("auth 1")
                 const clonedreq = req.clone({
-                    headers: req.headers.set("Authorization", "Bearer " + sessionStorage.getItem('token_fks'))
+                    headers: req.headers.set("Authorization", "Bearer " + sessionStorage.getItem('tkn'))
                 });
                 return next.handle(clonedreq).pipe(
                     tap((ev: HttpEvent<any>) => {
                         if (ev instanceof HttpResponse) {
-                            if(ev.body!=null){
-                                if(ev.body.datos){
-                                    if(ev.body.datos[0] != undefined){
-                                        if(ev.body.datos[0].codigo == 141){
-                                            sessionStorage.clear();
-                                            this.router.navigateByUrl('/login');
-                                        }
-                                    }
-                                }
+                            if(ev.body){
+                                console.info(`Leyendo desde el interceptor, este es el count: ${JSON.stringify(ev?.body?.count)}`);
                             }
                         }
                     }),

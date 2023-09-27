@@ -4,15 +4,27 @@
     <form class="row" [formGroup]="formPerson" (ngSubmit)="save()">
       <div class="col-4">
         <label for="nombre">Nombres:</label>
-        <input type="text" class="form-control" formControlName="nombre">
+        <input onlyAlphabet alphabetOnly type="text" class="form-control"
+          formControlName="nombre" [ngClass]="addClassValidator(formPerson.get('nombre'))">
+        <div class="invalid-feedback">
+          Debe ingresar <b>Nombres</b>.
+        </div>
       </div>
       <div class="col-4">
         <label for="apellido">Apellidos:</label>
-        <input type="text" class="form-control" formControlName="apellido">
+        <input onlyAlphabet type="text" class="form-control" formControlName="apellido"
+          [ngClass]="addClassValidator(formPerson.get('apellido'))">
+        <div class="invalid-feedback">
+          Debe ingresar <b>Apellidos</b>.
+        </div>
       </div>
       <div class="col-4">
         <label for="fechaNacimiento">Fecha de nacimiento:</label>
-        <input type="date" class="form-control" formControlName="fechaNacimiento">
+        <input type="date" class="form-control" formControlName="fechaNacimiento"
+          [ngClass]="addClassValidator(formPerson.get('fechaNacimiento'))">
+        <div class="invalid-feedback">
+          Debe ingresar <b>fecha nacimiento</b>.
+        </div>
       </div>
       <div class="col-12">
         <h2>Hijos</h2>
@@ -29,13 +41,25 @@
           <tbody>
             <tr [formGroupName]="i" *ngFor="let r of hijos.controls; let i=index">
               <td>
-                  <input placeholder="Nombres" type="text" formControlName="nombre" class="form-control">
+                  <input onlyAlphabet placeholder="Nombres" type="text" formControlName="nombre" class="form-control"
+                    [ngClass]="addClassValidator(hijos.controls[i].get('nombre'))">
+                  <div class="invalid-feedback">
+                    Debe ingresar <b>Nombres</b>.
+                  </div>
               </td>
               <td>
-                  <input placeholder="Apellidos" type="text" formControlName="apellido" class="form-control">
+                  <input onlyAlphabet placeholder="Apellidos" type="text" formControlName="apellido" class="form-control"
+                    [ngClass]="addClassValidator(hijos.controls[i].get('apellido'))">
+                  <div class="invalid-feedback">
+                    Debe ingresar <b>apellidos</b>.
+                  </div>
               </td>
               <td>
-                  <input placeholder="Fecha nac." type="text" formControlName="fechaNacimiento" class="form-control">
+                  <input placeholder="Fecha nac." type="date" formControlName="fechaNacimiento" class="form-control"
+                    [ngClass]="addClassValidator(hijos.controls[i].get('fechaNacimiento'))">
+                  <div class="invalid-feedback">
+                    Debe ingresar <b>fecha nacimiento</b>.
+                  </div>
               </td>
               <td>
                 <button type="button" (click)="removeHijo(i)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
@@ -65,16 +89,28 @@
           <tbody>
             <tr [formGroupName]="i" *ngFor="let r of peliculasFavoritas.controls; let i=index">
               <td>
-                  <input placeholder="Nombre" type="text" formControlName="nombre" class="form-control">
+                  <input placeholder="Nombre" type="text" formControlName="nombre" class="form-control"
+                    [ngClass]="addClassValidator(peliculasFavoritas.controls[i].get('nombre'))">
+                  <div class="invalid-feedback">
+                    Debe ingresar <b>nombre de pelicula</b>.
+                  </div>
               </td>
               <td>
-                  <input placeholder="Director" type="text" formControlName="director" class="form-control">
+                  <input onlyAlphabet placeholder="Director" type="text" formControlName="director" class="form-control"
+                    [ngClass]="addClassValidator(peliculasFavoritas.controls[i].get('director'))">
+                  <div class="invalid-feedback">
+                    Debe ingresar <b>director</b>.
+                  </div>
               </td>
               <td>
-                  <input placeholder="Año" type="number" formControlName="anio" class="form-control">
+                  <input placeholder="Año" type="number" formControlName="anio" class="form-control"
+                    [ngClass]="addClassValidator(peliculasFavoritas.controls[i].get('anio'))">
+                  <div class="invalid-feedback">
+                    Debe ingresar <b>año</b>.
+                  </div>
               </td>
               <td>
-                  <input placeholder="Tiene oscar" type="text" formControlName="hasOscar" class="form-control">
+                  <input placeholder="Tiene oscar" type="checkbox" formControlName="hasOscar" class="form-check-input">
               </td>
               <td>
                 <button type="button" (click)="removePelicula(i)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
