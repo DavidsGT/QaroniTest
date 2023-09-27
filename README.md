@@ -2,6 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
 
+# Importante
+
+* El proyecto trata de implementar fragmentos de conocimientos adquiridos.
+* Lamentablemente el servicio de login me bloqueo por exceso de peticiones,
+  por lo que opte por ingresar por el catch para realizar pruebas de Guards e interceptors.
+* Notece que el interceptor agrega el token antes de realizar la peticion, por lo que
+  para aquellas que no necesitan token uso httpWithBackend.
+* Lamento mencionar que use Bootstrap para el diseño front, ya que no cuento con 
+  conocimientos de Tailwind, e iba a tardar mas tiempo en el desarrollo del test.
+  (En aprendizaje).
+* Para el formulario notese que los datos de las personas guarda en memoria para ser 
+  representada en la lista todo por servicios.
+* Se uso loadChildren para implementar lazyload.
+* Los formulario de persona cuentan con validaciones basicas ademas de usar directivas 
+  para que solo se ingrese texto alfabetico.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
