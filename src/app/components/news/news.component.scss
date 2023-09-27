@@ -1,0 +1,11 @@
+.card {
+  .card-img-top {
+    height: 15rem;
+  }
+  .card-body {
+    height: 10rem;
+  }
+  &:hover {
+    transform: scale(1.05);
+  }  
+}

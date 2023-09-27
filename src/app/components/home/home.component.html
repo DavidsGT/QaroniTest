@@ -1,0 +1,10 @@
+<mat-drawer-container class="container-fluid h-100" autosize>
+  <mat-drawer #drawer class="mat-sidenav p-3" mode="side">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <div>
+    <app-toolbar (onToogleMenu)="drawer.toggle()"></app-toolbar>
+    <app-pages></app-pages>
+  </div>
+
+</mat-drawer-container>

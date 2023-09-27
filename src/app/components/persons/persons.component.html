@@ -1,0 +1,27 @@
+<div class="container-fluid py-3">
+  <h1>Personas registradas</h1>
+  <a [routerLink]="['./new']" class="btn btn-primary mb-2">Nuevo</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombres completos</th>
+        <th>Fecha de nacimiento</th>
+        <th>Cant. hijos</th>
+        <th>Cant. peliculas favoritas</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of persons">
+        <td>p.nombresCompletos</td>
+        <td>p.fechaNacimiento | date:'dd/MM/yyyy'</td>
+        <td>p.hijos.length</td>
+        <td>p.peliculasFavoritas.length</td>
+        <td></td>
+      </tr>
+      <tr *ngIf="!persons?.length">
+        <td colspan="5" align="center">No hay personas registradas</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

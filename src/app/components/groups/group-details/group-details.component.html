@@ -1,0 +1,52 @@
+<div class="container-fluid py-3">
+  <div>
+    <h1>Grupo {{group?.groupId}}</h1>
+  </div>
+  <loading [isVisible]="isLoading"></loading>
+  <ng-container *ngIf="!isLoading">
+    <div class="text-end">
+      <!-- <span>{{group?.date | date:'EEEE, dd \'de\' MMMM \'del\' yyyy'}}</span> -->
+    </div>
+    <h2 [innerHTML]="group?.name"></h2>
+    <h3> Tipo: <span class="badge bg-primary">{{group?.type}}</span> </h3>
+    <div class="row mb-3">
+      <div class="col-4">
+        <div class="card">
+          <div class="card-header">Tipo de asociación</div>
+          <div class="card-body">
+            {{group?.associationType}}
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-header">Estado</div>
+          <div class="card-body">
+            {{group?.status}}
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-header">Slug</div>
+          <div class="card-body">
+            {{group?.slug}}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="mb-0 text-justify" [innerHTML]="group?.description"></div>
+        <div class="mb-0 text-justify" *ngIf="!group?.description">
+          Sin descripcion
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a [routerLink]="['../']" class="btn btn-primary">Mas grupos</a>
+    </div>  
+  </ng-container>
+</div>
+

@@ -1,0 +1,6 @@
+<div class="w-100" style="z-index: 9999;">
+  <div *ngFor="let alert of alerts" [@fadeOut] class="alert {{cssClass(alert)}} alert-dismissible fade show" role="alert">
+    {{alert.message}}
+    <button type="button" (click)="removeAlert(alert)" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>

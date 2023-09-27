@@ -1,0 +1,22 @@
+<div class="container py-3">
+  <h1><a [routerLink]="['../']"><i class="fa-solid fa-angle-left"></i></a> Noticias</h1>
+  <loading [isVisible]="isLoading"></loading>
+  <div [hidden]="isLoading" class="row">
+    <div class="col-sm-12 col-lg-6 p-2 animated fadeIn" *ngFor="let n of obs | async">
+      <div (click)="viewDetails(n)" class="card">
+        <img loading="lazy" [src]="n?.imageUrl" class="card-img-top" alt="...">
+        <div class="card-body overflow-auto">
+          <div class="card-title">
+            {{n?.title}}
+          </div>
+          <div class="card-text">
+            {{n?.shortDescription}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

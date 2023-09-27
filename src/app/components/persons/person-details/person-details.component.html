@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <h1><a [routerLink]="['../']"><i class="fa-solid fa-angle-left"></i></a> Registro de persona</h1>
+  <div>
+    <form class="row" [formGroup]="formPerson" (ngSubmit)="save()">
+      <div class="col-4">
+        <label for="nombre">Nombres:</label>
+        <input type="text" class="form-control" formControlName="nombre">
+      </div>
+      <div class="col-4">
+        <label for="apellido">Apellidos:</label>
+        <input type="text" class="form-control" formControlName="apellido">
+      </div>
+      <div class="col-4">
+        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+        <input type="date" class="form-control" formControlName="fechaNacimiento">
+      </div>
+      <div class="col-12">
+        <h2>Hijos</h2>
+        <button type="button" (click)="addHijo()" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i></button>
+        <table formArrayName="hijos" class="table">
+          <thead>
+            <tr>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Fecha nacimiento</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroupName]="i" *ngFor="let r of hijos.controls; let i=index">
+              <td>
+                  <input placeholder="Nombres" type="text" formControlName="nombre" class="form-control">
+              </td>
+              <td>
+                  <input placeholder="Apellidos" type="text" formControlName="apellido" class="form-control">
+              </td>
+              <td>
+                  <input placeholder="Fecha nac." type="text" formControlName="fechaNacimiento" class="form-control">
+              </td>
+              <td>
+                <button type="button" (click)="removeHijo(i)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr *ngIf="!hijos.controls.length">
+              <td colspan="4">
+                No tiene hijos registrados
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12">
+        <h2>Peliculas favoritas</h2>
+        <button type="button" (click)="addPelicula()" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i></button>
+        <table formArrayName="peliculasFavoritas" class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Director</th>
+              <th>Año</th>
+              <th>Tiene oscar</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [formGroupName]="i" *ngFor="let r of peliculasFavoritas.controls; let i=index">
+              <td>
+                  <input placeholder="Nombre" type="text" formControlName="nombre" class="form-control">
+              </td>
+              <td>
+                  <input placeholder="Director" type="text" formControlName="director" class="form-control">
+              </td>
+              <td>
+                  <input placeholder="Año" type="number" formControlName="anio" class="form-control">
+              </td>
+              <td>
+                  <input placeholder="Tiene oscar" type="text" formControlName="hasOscar" class="form-control">
+              </td>
+              <td>
+                <button type="button" (click)="removePelicula(i)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr *ngIf="!peliculasFavoritas.controls.length">
+              <td colspan="5">
+                No tiene peliculas registrados
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12">
+        <button [disabled]="formPerson.invalid" type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

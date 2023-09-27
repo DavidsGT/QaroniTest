@@ -1,0 +1,23 @@
+<div class="container py-3">
+  <div>
+    <h1><a [routerLink]="['../']"><i class="fa-solid fa-angle-left"></i></a> Noticia {{new?.newId}}</h1>
+  </div>
+  <loading [isVisible]="isLoading"></loading>
+  <ng-container *ngIf="!isLoading">
+    <div class="text-end">
+      <span>{{new?.date | date:'EEEE, dd \'de\' MMMM \'del\' yyyy'}}</span>
+    </div>
+    <h2 [innerHTML]="new?.title"></h2>
+    <div class="card mb-3">
+      <div class="card-body">
+        <p class="mb-0">{{new?.shortDescription}}</p>
+      </div>
+    </div>
+    <div class="text-justify" [innerHTML]="new?.largeDescription">
+    </div>
+    <div class="text-center">
+      <a [routerLink]="['../']" class="btn btn-primary">Mas noticias</a>
+    </div>  
+  </ng-container>
+</div>
+

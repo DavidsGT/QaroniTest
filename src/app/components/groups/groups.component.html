@@ -1,0 +1,26 @@
+<div class="container-fluid py-3">
+  <h1>Grupos</h1>
+  <loading [isVisible]="isLoading"></loading>
+  <div [hidden]="isLoading" class="row">
+    <div class="col-sm-12 col-lg-6 p-2 animated fadeIn" *ngFor="let n of obs | async">
+      <div (click)="viewDetails(n)" class="card">
+        <div class="card-body overflow-auto">
+          <div class="card-title fw-bold">
+            {{n?.name}}
+          </div>
+          <div class="card-subtitle fw-bold mb-2">
+            <span class="badge bg-primary">{{n?.type}}</span>
+          </div>
+          <div class="card-text text-justify" [innerHTML]="n?.description">
+          </div>
+          <div class="card-text text-center" *ngIf="!n?.description">
+            Sin description
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <mat-paginator [pageSizeOptions]="[2, 4]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
